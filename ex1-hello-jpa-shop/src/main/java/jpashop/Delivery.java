@@ -5,54 +5,20 @@ import jakarta.persistence.*;
 
 @Entity
 public class Delivery {
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
     @Column(name="DELIVERY_ID")
     private Long id;
-    private String city;
-    private String street;
-    private String zipcode;
-    private String status;
 
     @OneToOne(mappedBy = "delivery")
     private Order order;
 
-    public Long getId() {
-        return id;
-    }
+    private String street;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String zipcode;
 
-    public String getCity() {
-        return city;
-    }
+    private String deliveryStatus;
 
-    public void setCity(String city) {
-        this.city = city;
-    }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

@@ -1,27 +1,21 @@
 package jpashop;
 
+
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-public class Item {
-
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+@Inheritance(strategy= InheritanceType.JOINED)
+//@Inheritance(strategy= InheritanceType.SINGLE_TABLE) //단일 테이블 전략
+@DiscriminatorColumn //Dtype 생성
+public abstract class Item {
+    @Id
+    @GeneratedValue
     @Column(name="ITEM_ID")
     private Long id;
 
     private String name;
-    private String price;
-    private String stockQunantity;
-
-    @OneToMany(mappedBy = "item")
-    private List<OrderItem> orderItems = new ArrayList<OrderItem>();
-
-
-    @ManyToMany(mappedBy = "items")
-    private List<Category> categories = new ArrayList<Category>();
+    private int price;
+    private int stockQuantity;
 
 
 
@@ -29,9 +23,7 @@ public class Item {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public String getName() {
         return name;
@@ -41,29 +33,14 @@ public class Item {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public String getStockQunantity() {
-        return stockQunantity;
-    }
-
-    public void setStockQunantity(String stockQunantity) {
-        this.stockQunantity = stockQunantity;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
 
 
 

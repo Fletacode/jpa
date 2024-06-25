@@ -18,6 +18,20 @@ public class JpaMain {
 
         tx.begin();
 
+        try{
+
+            /*
+            item이랑 book,album,movie 상속 어캐 되어있는지만 보면 될듯
+            */
+
+
+
+            tx.commit();
+        }catch (Exception e){
+            tx.rollback();
+        }finally {
+            em.close();
+        }
 
 
 
@@ -28,10 +42,9 @@ public class JpaMain {
 
 
 
-        tx.commit();
 
 
-        em.close();
+
 
         emf.close();
     }
